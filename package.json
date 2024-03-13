@@ -6,10 +6,15 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "compile-sass": "node-sass --output-style compressed src/sass -o dist/css"
   },
   "devDependencies": {
+    "sass": "^1.71.1",
     "typescript": "^5.2.2",
     "vite": "^5.1.6"
+  },
+  "dependencies": {
+    "node-sass": "^9.0.0"
   }
 }

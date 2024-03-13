@@ -1,0 +1,69 @@
+@import "typography"
+// header
+
+.header
+  background: $--background--dark
+  padding: 1.5rem 0
+
+  &__content
+    display: flex
+    justify-content: space-between
+
+  &__logo
+    width: 5rem
+    height: 5rem
+    align-self: center
+    justify-self: center
+
+    & > img
+      width: 100%
+      height: 100%
+
+  &__search
+    display: flex
+    flex-direction: row
+    gap: 1rem
+    padding: 1rem 0
+
+  &__input
+    font-size: $--font-size-small
+    font-weight: $--font-weight-regular
+    color: $--color-dark
+
+  &__label
+    display: flex
+    width: 3rem
+    cursor: pointer
+
+  &__label:after
+    content: ''
+    width: 100%
+    height: 100%
+    background-image: url("/src/img/icon/search.svg")
+    background-size: contain
+    background-position: center
+    background-repeat: no-repeat
+
+  &__nav
+    align-self: center
+
+  &__list
+    list-style: none
+    display: flex
+    flex-direction: row
+    justify-content: space-between
+    gap: 1rem
+    font-size: $--font-size-middle
+    color: $--color-light
+
+  &__item
+    border: solid 1px $--color-light
+    padding: .5rem 1rem
+    border-radius: 2rem
+    cursor: pointer
+    transition: .3s ease-in-out
+
+    &:hover
+      border: solid 1px $--color-yellow
+      color: $--color-yellow
+

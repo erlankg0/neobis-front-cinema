@@ -1,0 +1,23 @@
+@import "typography"
+
+.movies
+  background: $--background--dark
+
+  &__title
+    font-weight: $--font-weight-bold
+    font-size: $--font-size-big
+    color: $--color-yellow
+
+  &__content
+    display: flex
+    flex-direction: column
+    gap: 2rem
+
+  &__list
+    display: grid
+    grid-template-columns: repeat(3, 1fr)
+    max-width: 100%
+    gap: 3rem
+    list-style: none
+
+@import "card"
