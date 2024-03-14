@@ -53,15 +53,17 @@
     flex-direction: row
     justify-content: space-between
     gap: 1rem
-    font-size: $--font-size-middle
+    font-size: $--font-size-small
     color: $--color-light
 
   &__item
     border: solid 1px $--color-light
-    padding: .5rem 1rem
+    padding: .5rem .5rem
     border-radius: 2rem
     cursor: pointer
     transition: .3s ease-in-out
+    min-width: 15rem
+    text-align: center
 
     &:hover
       border: solid 1px $--color-yellow

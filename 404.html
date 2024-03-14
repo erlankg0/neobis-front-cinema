@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <link rel="icon" type="image/svg+xml" href="src/img/icon/logo.svg"/>
+    <link rel="stylesheet" href="src/sass/style.sass">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Vite + TS</title>
+</head>
+<body>
+<div class="wrapper">
+    <!--header-->
+    <header class="header">
+        <div class="container">
+            <div class="header__content">
+                <div class="header__logo">
+                    <img src="src/img/icon/logo.svg" alt="logo"/>
+                </div>
+                <nav class="header__nav">
+                    <ul class="header__list">
+                        <li class="header__item">
+                            <p>Премьеры месяца</p>
+                        </li>
+                        <li class="header__item">
+                            <p>Топ ожидаемых фильмов</p>
+                        </li>
+                        <li class="header__item">
+                            <p>Релизы месяца</p>
+                        </li>
+                        <li class="header__item">
+                            <p>Топ лучшее</p>
+                        </li>
+                        <li class="header__item">
+                            <p>Избранные</p>
+                        </li>
+                    </ul>
+                </nav>
+                <div class="header__search">
+                    <input id="search" type="text" class="header__input" placeholder="Поиск...">
+                    <label for="search" class="header__label"></label>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!--header end -->
+    <!-- main -->
+    <main class="main">
+        <section class="error">
+            <div class="container">
+                <a href="/" class="error__content">
+                    <img src="src/img/404.svg" alt="" class="error__img">
+                </a>
+            </div>
+        </section>
+    </main>
+    <!-- main  end -->
+    <!-- footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer__content">
+                <div class="footer__left">
+                    <img src="src/img/icon/logo.svg" class="footer__logo"/>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- footer end-->
+</div>
+<!--end wrapper-->
+<script type="module" src="/src/main.ts"></script>
+</body>
+</html>

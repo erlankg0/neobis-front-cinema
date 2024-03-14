@@ -1,23 +1,23 @@
 import axios from "axios"
 
 
-
-interface Country {
+interface ICountry {
     country: string
 }
-interface Genre {
+
+interface IGenre {
     genre: string
 }
-interface Movie {
+
+interface IMovie {
     kinopoiskId: number,
     imdbId: string,
-    countries: Country[],
-    genres: Genre[],
-    nameRu:  string | null,
-    nameEn:  string | null,
+    countries: ICountry[],
+    genres: IGenre[],
+    nameRu: string | null,
+    nameEn: string | null,
     nameOriginal: string | null,
 }
-
 
 
 const instance = axios.create({
@@ -35,5 +35,9 @@ const getFilm = (id: number) => {
     return instance.get('/v2.2/films/' + id)
 }
 
+const movies = (): Promise<IMovie> => {
+    return instance.get('')
+}
 
-export { getFilm }
+
+export {getFilm, movies};
