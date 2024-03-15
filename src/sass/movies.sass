@@ -19,5 +19,18 @@
     justify-items: center
     gap: 3rem
 
+@media (max-width: 1024px)
+  .movies
+    &__list
+      grid-template-columns: repeat(3, 1fr)
 
+@media (max-width: 768px)
+  .movies
+    &__list
+      grid-template-columns: repeat(2, 1fr)
+
+@media (max-width: 425px)
+  .movies
+    &__list
+      grid-template-columns: repeat(1, 1fr)
 @import "card"

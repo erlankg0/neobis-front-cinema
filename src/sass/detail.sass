@@ -1,0 +1,55 @@
+@import "typography"
+.detail
+  padding: 3rem
+
+  &__content
+    display: flex
+    flex-direction: column
+    gap: 4rem
+    width: 50%
+    margin: 0 auto
+  &__top
+    display: grid
+    grid-template-columns: 30rem 1fr
+
+  &__left, &__right
+    display: flex
+    flex-direction: column
+    gap: 3rem
+
+  &__poster
+    width: 24rem
+
+  &__information
+    display: flex
+    flex-direction: column
+    gap: 1.5rem
+
+  &__info
+    display: grid
+    grid-template-columns: 4rem 1fr
+    gap: 5rem
+
+    &-title
+      font-size: $--font-size-middle
+
+    &-item
+      font-size: $--font-size-small
+
+    &-list
+      display: flex
+      gap: .8rem
+      align-self: center
+  &__title
+    font-size: $--font-size-big
+  &__description
+    font-size: $--font-size-middle
+
+@media (max-width: 768px)
+  .detail
+    &__content
+      flex-direction: column
+
+    &__top
+      display: flex
+      flex-direction: column

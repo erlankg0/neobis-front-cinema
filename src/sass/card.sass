@@ -1,7 +1,10 @@
 @import "typography"
 .card
   width: 24rem
-
+  display: flex
+  flex-direction: column
+  justify-content: space-between
+  gap: 1rem
 
   &__header
     height: 40rem
@@ -20,27 +23,33 @@
     width: 100%
 
   &__rating
-    padding: .5rem
+    padding: .7rem
     color: $--color-yellow
     border-radius: 50%
     border: solid 1px $--color-light
     cursor: pointer
+    width: 3rem
+    height: 3rem
+    text-align: center
 
 
   &__follow
-    width: 2.5rem
-    height: 2.5rem
+    width: 3rem
+    height: 3rem
     background-color: $--color-light
     border-radius: 50%
     padding: .5rem
 
   &__follow:before
+    display: flex
     content: ''
     background-image: url("/src/img/icon/loved.svg")
     background-position: center
     background-repeat: no-repeat
     background-size: contain
     width: 2rem
+    height: 2rem
+
 
   &__img
     width: 100%
