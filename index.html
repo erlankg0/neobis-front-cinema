@@ -18,16 +18,16 @@
                 </div>
                 <nav class="header__nav">
                     <ul class="header__list">
-                        <li class="header__item">
+                        <li class="header__item" id="premiers">
                             <p>Премьеры месяца</p>
                         </li>
-                        <li class="header__item">
+                        <li class="header__item" id="waiting">
                             <p>Топ ожидаемых фильмов</p>
                         </li>
-                        <li class="header__item">
+                        <li class="header__item" id="releases">
                             <p>Релизы месяца</p>
                         </li>
-                        <li class="header__item">
+                        <li class="header__item" id="best">
                             <p>Топ лучшее</p>
                         </li>
                         <li class="header__item">
@@ -47,9 +47,9 @@
     <main class="main">
         <section class="movies">
             <div class="container">
-                <div class="movies__content">
-                    <h1 class="movies__title"><strong>Премиьеры месяца</strong></h1>
-                    <div class="movies__list">
+                <div class="movies__content" >
+                    <h1 class="movies__title"><strong id="title">Премиьеры месяца</strong></h1>
+                    <div class="movies__list" id="movies__list">
                         <div class="card">
                             <div class="card__header">
                                 <div class="card__top">
@@ -227,6 +227,6 @@
     <!-- footer end-->
 </div>
 <!--end wrapper-->
-<script type="module" src="/src/main.ts"></script>
+<script type="module" src="src/ts/main.ts"></script>
 </body>
 </html>
