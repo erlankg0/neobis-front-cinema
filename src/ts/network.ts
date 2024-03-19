@@ -46,7 +46,8 @@ interface IReleasesMovies {
 interface IResponseMovies {
     data: {
         items: IMovie[],
-        releases: IReleasesMovies[]
+        releases: IReleasesMovies[],
+        films: IReleasesMovies[],
     },
     status: number,
     statusText: string,
@@ -92,5 +93,9 @@ const waitingMovies = (page: number = 1): Promise<IResponseMovies> => {
     return instance.get(`/v2.2/films/collections?type=${type}&page=${page}`)
 }
 
-export {getFilm, premieresMovies, releasesMovies, bestMovies, waitingMovies};
+const searchMovies = (page: number = 1, keyword: string): Promise<IResponseMovies> => {
+    return instance.get(`/v2.1/films/search-by-keyword?keyword=${keyword}&page=${page}`)
+}
+
+export {getFilm, premieresMovies, releasesMovies, bestMovies, waitingMovies, searchMovies};
 export type {IMovie, IReleasesMovies};
