@@ -41,6 +41,7 @@ interface IReleasesMovies {
     countries: ICountry[],
     genres: IGenre[],
     rating: number,
+
 }
 
 interface IResponseMovies {
@@ -54,6 +55,19 @@ interface IResponseMovies {
 }
 
 
+interface IMoviesList {
+    id: string,
+    nameRu: string,
+    nameEn: string,
+    year: string;
+    posterUrl: string
+    posterUrlPreview: string,
+    countries: ICountry[],
+    genres: IGenre[],
+    rating: number,
+    isFollow: boolean
+
+}
 const instance = axios.create({
     baseURL: "https://kinopoiskapiunofficial.tech/api",
     method: 'GET',
@@ -65,10 +79,16 @@ const instance = axios.create({
 
 });
 
-
-const getFilm = (id: number) => {
-    return instance.get('/v2.2/films/' + id)
+const getFilm = async (id: string):Promise<IMoviesList> => {
+    console.log(id, 'getting');
+    try {
+        const response = await instance.get('/v2.2/films/' + id);
+        return response.data;
+    } catch (error) {
+        throw error; // Propagate the error
+    }
 }
+
 
 
 const premieresMovies = (): Promise<IResponseMovies> => {
@@ -98,4 +118,4 @@ const searchMovies = (page: number = 1, keyword: string): Promise<IResponseMovie
 }
 
 export {getFilm, premieresMovies, releasesMovies, bestMovies, waitingMovies, searchMovies};
-export type {IMovie, IReleasesMovies};
+export type {IMovie, IReleasesMovies, IGenre, ICountry, IMoviesList};

@@ -7,6 +7,7 @@ import {
     searchMovies,
     waitingMovies
 } from "./network.ts";
+import {IMoviesList, Store} from "./store.ts";
 
 // DOM объекты
 const moviesList = document.getElementById('movies__list') as HTMLElement;
@@ -17,7 +18,11 @@ const premiers = document.getElementById('premiers') as HTMLElement;
 const title = document.getElementById('title') as HTMLElement;
 const search = document.getElementById('search') as HTMLInputElement;
 const searchLabel = document.querySelector('.header__label') as HTMLElement;
+const following = document.getElementById('following') as HTMLElement;
 
+// менеджер для localStorage
+
+const store = new Store();
 // eventListeners
 document.addEventListener('DOMContentLoaded', async () => {
     const premiersList = await premieresMovies();
@@ -58,7 +63,13 @@ searchLabel.addEventListener('click', async () => {
     search.value = ''
     renderMovies(searchList.data.films.splice(0, 10), 'Поиск Фильмов');
 })
-const renderMovies = (movies: IMovie[] | IReleasesMovies[], titleText: string) => {
+
+following.addEventListener('click', () => {
+    const followingList = store.movies;
+    renderMovies(followingList, 'Избранные');
+})
+
+const renderMovies = (movies: IMovie[] | IReleasesMovies[] | IMoviesList[], titleText: string) => {
     // очищяем элемент от старных объектов
     moviesList.innerHTML = '';
     title.innerHTML = '';
@@ -86,6 +97,23 @@ const renderMovies = (movies: IMovie[] | IReleasesMovies[], titleText: string) =
 
         const card__follow = document.createElement('div');
         card__follow.classList.add('card__follow');
+        if ('kinopoiskId' in movie) {
+            card__follow.setAttribute('id', `${movie.kinopoiskId}`)
+        } else if ('filmId' in movie) {
+            card__follow.setAttribute('id', `${movie.filmId}`)
+        } else {
+            card__follow.setAttribute('id', `${movie.id}`)
+        }
+
+        card__follow.addEventListener('click', (event) => {
+            const currentElement = event.target as HTMLElement;
+            const id = currentElement.getAttribute('id');
+            if (id) {
+                store.isFollow(id)
+            }else{
+                console.log('no')
+            }
+        })
 
         const card__img = document.createElement('img');
         card__img.classList.add('card__img');
