@@ -7,7 +7,7 @@ import {
     searchMovies,
     waitingMovies
 } from "./network.ts";
-import {IMoviesList, Store} from "./store.ts";
+import {IFollowingMovies, Store} from "./store.ts";
 
 // DOM объекты
 const moviesList = document.getElementById('movies__list') as HTMLElement;
@@ -69,7 +69,7 @@ following.addEventListener('click', () => {
     renderMovies(followingList, 'Избранные');
 })
 
-const renderMovies = (movies: IMovie[] | IReleasesMovies[] | IMoviesList[], titleText: string) => {
+const renderMovies = (movies: IMovie[] | IReleasesMovies[] | IFollowingMovies[], titleText: string) => {
     // очищяем элемент от старных объектов
     moviesList.innerHTML = '';
     title.innerHTML = '';

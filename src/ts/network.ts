@@ -1,13 +1,12 @@
-import axios from "axios"
+import axios, { AxiosInstance } from "axios";
 
-const MONTH: string[] = [
-    'JANUARY', 'FEBRUARY',
-    'MARCH', 'APRIL',
-    'MAY', 'JUNE',
-    'JULY', 'AUGUST',
-    'SEPTEMBER', 'OCTOBER',
-    'NOVEMBER', 'DECEMBER'
-]
+// Типы данных
+enum Category {
+    PREMIERS,
+    BEST,
+    WAITING,
+    RELEASE
+}
 
 interface ICountry {
     country: string
@@ -41,7 +40,6 @@ interface IReleasesMovies {
     countries: ICountry[],
     genres: IGenre[],
     rating: number,
-
 }
 
 interface IResponseMovies {
@@ -54,8 +52,7 @@ interface IResponseMovies {
     statusText: string,
 }
 
-
-interface IMoviesList {
+interface IFollowingMovies {
     id: string,
     nameRu: string,
     nameEn: string,
@@ -66,9 +63,11 @@ interface IMoviesList {
     genres: IGenre[],
     rating: number,
     isFollow: boolean
-
+    category: Category
 }
-const instance = axios.create({
+
+// Создаем отдельный экземпляр axios
+const instance: AxiosInstance = axios.create({
     baseURL: "https://kinopoiskapiunofficial.tech/api",
     method: 'GET',
     timeout: 2000,
@@ -76,10 +75,32 @@ const instance = axios.create({
         'X-API-KEY': 'c3be2e47-3e4f-4945-8b0b-cabd9af738fe',
         'Content-Type': 'application/json',
     },
-
 });
 
-const getFilm = async (id: string):Promise<IMoviesList> => {
+
+// Функция для получения текущего года и месяца
+const getCurrentYearAndMonth = ()=> {
+    const currentDate = new Date();
+    const currentYear = currentDate.getFullYear();
+    const currentMonth = currentDate.toLocaleString('en-US', { month: 'long' }).toUpperCase();
+    return { currentYear, currentMonth };
+}
+
+// Функция для получения списка премьер
+const premieresMovies = (): Promise<IResponseMovies> => {
+    const { currentYear, currentMonth } = getCurrentYearAndMonth();
+    return instance.get(`/v2.2/films/premieres?year=${currentYear}&month=${currentMonth}`);
+}
+
+// Функция для получения списка релизов
+const releasesMovies = (page: number = 1): Promise<IResponseMovies> => {
+    const { currentYear, currentMonth } = getCurrentYearAndMonth();
+    return instance.get(`/v2.1/films/releases?year=${currentYear}&month=${currentMonth}&page=${page}`);
+}
+
+
+
+const getFilm = async (id: string):Promise<IFollowingMovies> => {
     console.log(id, 'getting');
     try {
         const response = await instance.get('/v2.2/films/' + id);
@@ -91,17 +112,6 @@ const getFilm = async (id: string):Promise<IMoviesList> => {
 
 
 
-const premieresMovies = (): Promise<IResponseMovies> => {
-    const currentYear = new Date().getFullYear();
-    const currentMonth = MONTH[new Date().getMonth()]
-    return instance.get(`/v2.2/films/premieres?year=${currentYear}&month=${currentMonth}`)
-}
-
-const releasesMovies = (page: number = 1): Promise<IResponseMovies> => {
-    const currentYear = new Date().getFullYear();
-    const currentMonth = MONTH[new Date().getMonth()]
-    return instance.get(`/v2.1/films/releases?year=${currentYear}&month=${currentMonth}&page=${page}`)
-}
 
 const bestMovies = (page: number = 1): Promise<IResponseMovies> => {
     const type = 'TOP_250_MOVIES';
@@ -118,4 +128,4 @@ const searchMovies = (page: number = 1, keyword: string): Promise<IResponseMovie
 }
 
 export {getFilm, premieresMovies, releasesMovies, bestMovies, waitingMovies, searchMovies};
-export type {IMovie, IReleasesMovies, IGenre, ICountry, IMoviesList};
+export type {IMovie, IReleasesMovies, IGenre, ICountry, IFollowingMovies};

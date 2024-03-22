@@ -1,16 +1,32 @@
-import {getFilm} from "./network.ts";
-import {IMoviesList} from "./network.ts";
+import { getFilm } from "./network.ts";
+import { IFollowingMovies } from "./network.ts";
+
 
 
 class Store {
-    private _movies: IMoviesList[] = [];
+    private _movies: IFollowingMovies[] = [];
+    private _premiers: IFollowingMovies[] = [];
+    private _waiting: IFollowingMovies[] = [];
+    private _best: IFollowingMovies[] = [];
 
     constructor() {
         this.loadMovies()
     }
 
-    get movies(): IMoviesList[] {
+    get movies(): IFollowingMovies[] {
         return this._movies;
+    }
+
+    get premiers(): IFollowingMovies[]{
+        return this._premiers;
+    }
+
+    get best(): IFollowingMovies[]{
+        return this._best;
+    }
+
+    get waiting():IFollowingMovies[]{
+        return this._waiting;
     }
 
     private loadMovies = (): void => {
@@ -54,4 +70,4 @@ class Store {
 
 }
 
-export {Store}
+export { Store }
