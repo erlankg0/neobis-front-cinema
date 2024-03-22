@@ -2,12 +2,13 @@ import {
     bestMovies,
     IMovie,
     IReleasesMovies,
+    IFollowingMovies,
     premieresMovies,
     releasesMovies,
     searchMovies,
     waitingMovies
 } from "./network.ts";
-import {IFollowingMovies, Store} from "./store.ts";
+import {Store} from "./store.ts";
 
 // DOM объекты
 const moviesList = document.getElementById('movies__list') as HTMLElement;
