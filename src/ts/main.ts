@@ -5,9 +5,10 @@ import {
     premieresMovies,
     releasesMovies,
     searchMovies,
-    waitingMovies
+    waitingMovies,
+    IFollowingMovies
 } from "./network.ts";
-import {IFollowingMovies, Store} from "./store.ts";
+import { Store } from "./store.ts";
 
 // DOM объекты
 const moviesList = document.getElementById('movies__list') as HTMLElement;
@@ -74,7 +75,7 @@ const renderMovies = (movies: IMovie[] | IReleasesMovies[] | IFollowingMovies[],
     moviesList.innerHTML = '';
     title.innerHTML = '';
     title.textContent = titleText;
-
+    const followedList = store.movies;
     movies.forEach((movie) => {
         const card = document.createElement('div');
         card.classList.add('card');
@@ -97,6 +98,11 @@ const renderMovies = (movies: IMovie[] | IReleasesMovies[] | IFollowingMovies[],
 
         const card__follow = document.createElement('div');
         card__follow.classList.add('card__follow');
+        const isFollowed = followedList.some((followed) => followed.posterUrl === movie.posterUrl);
+
+        if (isFollowed) {
+            card__follow.classList.add('active');
+        }
         if ('kinopoiskId' in movie) {
             card__follow.setAttribute('id', `${movie.kinopoiskId}`)
         } else if ('filmId' in movie) {
@@ -108,12 +114,20 @@ const renderMovies = (movies: IMovie[] | IReleasesMovies[] | IFollowingMovies[],
         card__follow.addEventListener('click', (event) => {
             const currentElement = event.target as HTMLElement;
             const id = currentElement.getAttribute('id');
-            if (id) {
-                store.isFollow(id)
-            }else{
-                console.log('no')
+            console.log(isFollowed)
+            if (!isFollowed) {
+                if (id) {
+                    store.isFollow(id);
+                    card__follow.classList.add('active')
+                } else {
+                    alert('Нету ID');
+                }
+            } else {
+                alert('Фильм уже в избранных');
             }
-        })
+
+        });
+
 
         const card__img = document.createElement('img');
         card__img.classList.add('card__img');

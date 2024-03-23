@@ -17,7 +17,7 @@ interface IGenre {
 }
 
 interface IMovie {
-    kinopoiskId: number,
+    kinopoiskId: string,
     rating?: number,
     ratingKinopoisk: number,
     imdbId: string,
@@ -28,10 +28,11 @@ interface IMovie {
     nameRu: string | null,
     nameEn: string | null,
     nameOriginal?: string,
+    isFollow: boolean
 }
 
 interface IReleasesMovies {
-    filmId: number,
+    filmId: string,
     nameRu: string,
     nameEn: string,
     year: string;
@@ -40,6 +41,7 @@ interface IReleasesMovies {
     countries: ICountry[],
     genres: IGenre[],
     rating: number,
+    isFollow: boolean
 }
 
 interface IResponseMovies {

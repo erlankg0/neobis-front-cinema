@@ -40,8 +40,16 @@
     background-color: $--color-light
     border-radius: 50%
     padding: .5rem
-
   &__follow:before
+    display: flex
+    content: ''
+    background-image: url("/src/img/icon/unlove.svg")
+    background-position: center
+    background-repeat: no-repeat
+    background-size: contain
+    width: 2rem
+    height: 2rem
+  &__follow.active:before
     display: flex
     content: ''
     background-image: url("/src/img/icon/loved.svg")
